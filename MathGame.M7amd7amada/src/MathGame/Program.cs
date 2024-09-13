@@ -1,5 +1,4 @@
 ﻿using MathGame.Services;
-using MathGame.Services.Interface;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,11 +9,16 @@ public class Program
     public static void Main()
     {
         var serviceProvider = new ServiceCollection()
-            .AddScoped<IDisplayHandler, DisplayHandler>()
+            .AddScoped<IDisplayManager, DisplayManager>()
+            .AddScoped<IInputManager, InputManager>()
+            .AddScoped<IGameRepository, GameRepository>()
+            .AddScoped<ICommandHandler, CommandHandler>()
+            .AddScoped<IOperatorHandler, OperatorHandler>()
+            .AddScoped<IGameManager, GameManager>()
             .BuildServiceProvider();
 
-        var displayHandler = serviceProvider.GetRequiredService<IDisplayHandler>();
+        var game = serviceProvider.GetRequiredService<IGameManager>();
 
-        displayHandler.DisplayWelcomeMessage();
+        game.StartGame();
     }
 }
