@@ -27,8 +27,6 @@ public class CommandHandler(
             case 4:
                 TopTime();
                 break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(command), "Invalid operation");
         };
     }
 

@@ -6,6 +6,6 @@ public class Game
 
     public int Id { get; } = s_idCount++;
     public DateTime GameDate { get; } = DateTime.UtcNow;
-    public int Score { get; set; } = 0;
+    public int Score { get; set; }
     public long Time { get; set; } = default!;
 }
