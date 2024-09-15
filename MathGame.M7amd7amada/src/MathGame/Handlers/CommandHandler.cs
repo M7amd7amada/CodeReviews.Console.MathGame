@@ -1,5 +1,3 @@
-using MathGame.Handlers.Interfaces;
-
 namespace MathGame.Handlers;
 
 public class CommandHandler(
@@ -27,7 +25,9 @@ public class CommandHandler(
             case 4:
                 TopTime();
                 break;
-        };
+            default:
+                throw new ArgumentOutOfRangeException(nameof(command), "Invalid operation");
+        }
     }
 
     private void PlayGame()
