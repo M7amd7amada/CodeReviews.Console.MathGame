@@ -30,7 +30,7 @@ public class DisplayManager : IDisplayManager
 
     public void DisplayWelcomeMessage()
     {
-        Console.Clear();
+        // Console.Clear();
         Console.WriteLine($"{"",3}Welcome To Math Game!!");
         Console.WriteLine(new string('-', 30));
     }
