@@ -5,6 +5,7 @@ namespace MathGame.Services.Interfaces;
 public interface IGameRepository
 {
     List<Game> GetAllGames();
-    void AddGame();
+    void AddGame(Game game);
     List<Game> GetTopScores();
+    List<Game> GetTopTime();
 }

@@ -18,6 +18,9 @@ public class CommandHandler(IGameRepository repository, IDisplayManager displayM
             case 3:
                 TopScores();
                 break;
+            case 4:
+                TopTime();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(command), "Invalid operation");
         };
@@ -25,19 +28,26 @@ public class CommandHandler(IGameRepository repository, IDisplayManager displayM
 
     private void PlayGame()
     {
+        displayManager.DisplayLevelsMenu();
+        var level = inputManager.TakeUserLevel();
         displayManager.DisplayOperatorsMenu();
         var op = inputManager.TakeUserOperator();
-        operatorHandler.Handle(op);
+        operatorHandler.Handle(op, level);
     }
 
     private void ViewHistory()
     {
-        repository.GetAllGames();
+        displayManager.DisplayGames(repository.GetAllGames());
     }
 
     private void TopScores()
     {
-        repository.GetTopScores();
+        displayManager.DisplayGames(repository.GetTopScores());
+    }
+
+    private void TopTime()
+    {
+        displayManager.DisplayGames(repository.GetTopTime());
     }
 
     private static void Exit()

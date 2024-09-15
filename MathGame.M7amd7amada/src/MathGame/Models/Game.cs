@@ -7,6 +7,5 @@ public class Game
     public int Id { get; } = s_idCount++;
     public DateTime GameDate { get; } = DateTime.Now;
     public int Score { get; set; } = 0;
-    public MathProblem Problem { get; set; } = default!;
     public long Time { get; set; } = default!;
 }

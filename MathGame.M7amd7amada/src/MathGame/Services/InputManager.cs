@@ -39,4 +39,20 @@ public class InputManager : IInputManager
             Console.WriteLine("Please enter a valid command option!\n");
         }
     }
+
+    public Level TakeUserLevel()
+    {
+        while (true)
+        {
+            Console.Write($"Choose a menu option using your keyboard: ");
+            if (int.TryParse(Console.ReadLine(), out int input)
+                && Level.List.Select(x => x.Value).Contains(input))
+            {
+                Console.WriteLine();
+                Level.TryFromValue(input, out Level level);
+                return level;
+            }
+            Console.WriteLine("Please enter a valid level option!\n");
+        }
+    }
 }

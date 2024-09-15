@@ -7,8 +7,12 @@ public class GameManager(IDisplayManager displayHandler, IInputManager inputMana
     public void StartGame()
     {
         displayHandler.DisplayWelcomeMessage();
-        displayHandler.DisplayCommandsMenu();
-        var command = inputManager.TakeUserCommand();
-        handler.Handle(command);
+        while (true)
+        {
+            System.Console.WriteLine();
+            displayHandler.DisplayCommandsMenu();
+            var command = inputManager.TakeUserCommand();
+            handler.Handle(command);
+        }
     }
 }

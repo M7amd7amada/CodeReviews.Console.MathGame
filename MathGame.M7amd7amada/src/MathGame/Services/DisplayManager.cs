@@ -4,11 +4,6 @@ namespace MathGame.Services;
 
 public class DisplayManager : IDisplayManager
 {
-    public void DisplayLevelsMenu()
-    {
-
-    }
-
     public void DisplayProblem(MathProblem problem)
     {
         Console.Write($"{problem.LeftOperand} {(char)problem.Operator} {problem.RightOperand} = ");
@@ -30,7 +25,7 @@ public class DisplayManager : IDisplayManager
 
     public void DisplayWelcomeMessage()
     {
-        // Console.Clear();
+        Console.Clear();
         Console.WriteLine($"{"",3}Welcome To Math Game!!");
         Console.WriteLine(new string('-', 30));
     }
@@ -39,7 +34,7 @@ public class DisplayManager : IDisplayManager
     {
         foreach (var op in Operator.List.Order())
         {
-            Console.WriteLine($"[{op.Value}] {op.Name,-15} {op.Symbol}");
+            Console.WriteLine($"[{op.Value}] {op.Name,-15} ({op.Symbol})");
         }
     }
 
@@ -51,4 +46,31 @@ public class DisplayManager : IDisplayManager
         }
     }
 
+    public void DisplayLevelsMenu()
+    {
+        foreach (var level in Level.List.Order())
+        {
+            Console.WriteLine($"[{level.Value}] {level.Name}  ({level.LeftOperandDigit} # {level.RightOperandDigit})");
+        }
+    }
+
+    public void DisplayGames(List<Game> games)
+    {
+        if (games.Count == 0)
+        {
+            Console.WriteLine("There is no games right now!!\n");
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("{0,-5} {1,-20} {2,-10} {3,-5}",
+            "ID", "Date", "Score", "Time");
+        Console.WriteLine(new string('-', 60));
+
+        foreach (var game in games)
+        {
+            Console.WriteLine("{0,-5} {1,-20} {2,-10} {3,-5}",
+                $"#{game.Id}", game.GameDate, game.Score, game.Time);
+        }
+        Console.WriteLine();
+    }
 }

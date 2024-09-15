@@ -5,18 +5,25 @@ namespace MathGame.Services;
 
 public class GameRepository : IGameRepository
 {
-    public void AddGame()
+    private readonly List<Game> _games = [];
+
+    public void AddGame(Game game)
     {
-        throw new NotImplementedException();
+        _games.Add(game);
     }
 
     public List<Game> GetAllGames()
     {
-        throw new NotImplementedException();
+        return _games;
     }
 
     public List<Game> GetTopScores()
     {
-        throw new NotImplementedException();
+        return [.. _games.OrderBy(x => x.Score)];
+    }
+
+    public List<Game> GetTopTime()
+    {
+        return [.. _games.OrderBy(x => x.Time)];
     }
 }
