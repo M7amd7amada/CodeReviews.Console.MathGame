@@ -2,9 +2,12 @@ using MathGame.Models;
 using MathGame.Helpers;
 using System.Diagnostics;
 
-namespace MathGame.Services;
+namespace MathGame.Handlers;
 
-public class OperatorHandler(IDisplayManager displayManager, IInputManager inputManager, IGameRepository gameRepository) : IOperatorHandler
+public class OperatorHandler(
+    IDisplayManager displayManager,
+    IInputManager inputManager,
+    IGameRepository gameRepository) : IOperatorHandler
 {
     private readonly Stopwatch _stopwatch = new();
     public void Handle(Operator op, Level level)
@@ -61,11 +64,12 @@ public class OperatorHandler(IDisplayManager displayManager, IInputManager input
             problem.UserAnswer = answer;
             if (problem.IsCorrectAnswer())
             {
-                game.Score++;
+                game.Score += level.Value;
             }
         }
         _stopwatch.Stop();
         game.Time = _stopwatch.ElapsedMilliseconds / 1000;
+        displayManager.DisplayGameStatus(game);
         gameRepository.AddGame(game);
     }
 

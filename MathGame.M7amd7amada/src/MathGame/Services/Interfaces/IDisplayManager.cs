@@ -10,4 +10,5 @@ public interface IDisplayManager
     void DisplayOperatorsMenu();
     void DisplayGames(List<Game> games);
     void DisplayProblem(MathProblem problem);
+    void DisplayGameStatus(Game game);
 }

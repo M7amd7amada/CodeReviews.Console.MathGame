@@ -1,6 +1,12 @@
-namespace MathGame.Services;
+using MathGame.Handlers.Interfaces;
 
-public class CommandHandler(IGameRepository repository, IDisplayManager displayManager, IInputManager inputManager, IOperatorHandler operatorHandler) : ICommandHandler
+namespace MathGame.Handlers;
+
+public class CommandHandler(
+    IGameRepository repository,
+    IDisplayManager displayManager,
+    IInputManager inputManager,
+    IOperatorHandler operatorHandler) : ICommandHandler
 {
     public void Handle(Command command)
     {

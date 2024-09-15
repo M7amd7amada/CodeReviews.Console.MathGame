@@ -10,4 +10,5 @@ public class Command(string name, int value) : SmartEnum<Command>(name, value)
     public static readonly Command TopTime = new("Top Time", 4);
 
     public static readonly Command Exit = new(nameof(Exit), 0);
+
 }

@@ -1,16 +1,17 @@
-using System.Windows.Input;
-
 namespace MathGame.Services;
 
-public class GameManager(IDisplayManager displayHandler, IInputManager inputManager, ICommandHandler handler) : IGameManager
+public class GameManager(
+    IDisplayManager displayManager,
+    IInputManager inputManager,
+    ICommandHandler handler) : IGameManager
 {
     public void StartGame()
     {
-        displayHandler.DisplayWelcomeMessage();
+        displayManager.DisplayWelcomeMessage();
         while (true)
         {
-            System.Console.WriteLine();
-            displayHandler.DisplayCommandsMenu();
+            Console.WriteLine();
+            displayManager.DisplayCommandsMenu();
             var command = inputManager.TakeUserCommand();
             handler.Handle(command);
         }

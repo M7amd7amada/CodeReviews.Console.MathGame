@@ -1,5 +1,7 @@
 using MathGame.Models;
 
+using Spectre.Console;
+
 namespace MathGame.Services;
 
 public class DisplayManager : IDisplayManager
@@ -48,10 +50,20 @@ public class DisplayManager : IDisplayManager
 
     public void DisplayLevelsMenu()
     {
+        Console.WriteLine("Levels: \n");
+        Console.WriteLine($"{"Value",-6} {"Name",-20} {"Operands",-15}");
+        Console.WriteLine(new string('-', 45));
+
         foreach (var level in Level.List.Order())
         {
-            Console.WriteLine($"[{level.Value}] {level.Name}  ({level.LeftOperandDigit} # {level.RightOperandDigit})");
+            Console.WriteLine($"[{level.Value,-1}]{"",-3} {level.Name,-20} ({level.LeftOperandDigit} # {level.RightOperandDigit})");
         }
+    }
+
+    public void DisplayGameStatus(Game game)
+    {
+        Console.WriteLine($"\nGame Score: {game.Score}\nGame Time: {game.Time}\n");
+        Console.WriteLine(new string('-', 60));
     }
 
     public void DisplayGames(List<Game> games)
@@ -60,17 +72,20 @@ public class DisplayManager : IDisplayManager
         {
             Console.WriteLine("There is no games right now!!\n");
         }
-
-        Console.WriteLine();
-        Console.WriteLine("{0,-5} {1,-20} {2,-10} {3,-5}",
-            "ID", "Date", "Score", "Time");
-        Console.WriteLine(new string('-', 60));
-
-        foreach (var game in games)
+        else
         {
-            Console.WriteLine("{0,-5} {1,-20} {2,-10} {3,-5}",
-                $"#{game.Id}", game.GameDate, game.Score, game.Time);
+            var table = new Table();
+            table.AddColumn("ID");
+            table.AddColumn("Date");
+            table.AddColumn("Score");
+            table.AddColumn("Time");
+
+            foreach (var game in games)
+            {
+                table.AddRow($"#{game.Id}", game.GameDate.ToString(), game.Score.ToString(), game.Time.ToString());
+            }
+
+            AnsiConsole.Write(table);
         }
-        Console.WriteLine();
     }
 }

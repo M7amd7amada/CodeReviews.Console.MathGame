@@ -1,4 +1,4 @@
-namespace MathGame.Services.Interfaces;
+namespace MathGame.Handlers.Interfaces;
 
 public interface ICommandHandler
 {

@@ -1,4 +1,3 @@
-
 using MathGame.Models;
 
 namespace MathGame.Services;
